@@ -87,7 +87,6 @@ export default {
   methods: {
     async login() {
       try {
-        this.authError = ''
         this.isAuthLoading = true
         const { data } = await this.$axios.post(
           'https://gavali.fungeek.net/rest/1/l6yxn7688v0l6ewl/myuser.admin.auth',
@@ -99,13 +98,9 @@ export default {
 
         if (data.result && data.result.ID) {
           this.isAuthLoading = false
-          await this.$store.dispatch('auth/setUserData', {
-            userData: data.result,
-          })
-          this.$router.push('/dashboard')
         } else {
           this.isAuthLoading = false
-          this.authError = data.result.error
+          this.authError = 'Неверный пароль'
         }
 
         await this.$store.dispatch('fetch', {

@@ -101,16 +101,7 @@ export default {
     setInterval(() => {
       const item = images[Math.floor(Math.random() * images.length)]
       document.getElementById('app').style.backgroundImage = 'url(' + item + ')'
-    }, 10000)
+    }, 5000)
   },
 }
 </script>
-
-<style>
-#app {
-  background-size: cover;
-  background-position: center;
-  -webkit-transition: background-image 0.6s ease-in-out;
-  transition: background-image 0.6s ease-in-out;
-}
-</style>

@@ -99,10 +99,6 @@ export default {
 
         if (data.result && data.result.ID) {
           this.isAuthLoading = false
-          await this.$store.dispatch('auth/setUserData', {
-            userData: data.result,
-          })
-          this.$router.push('/dashboard')
         } else {
           this.isAuthLoading = false
           this.authError = data.result.error
