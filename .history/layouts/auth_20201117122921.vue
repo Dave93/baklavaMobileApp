@@ -35,7 +35,6 @@
 </template>
 <script>
 export default {
-  name: 'auth',
   data() {
     return {
       show1: false,
@@ -58,13 +57,11 @@ export default {
       'https://images.pexels.com/photos/681331/pexels-photo-681331.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
     ]
 
-    const item = images[Math.floor(Math.random() * images.length)]
-    document.getElementById('app').style.backgroundImage = 'url(' + item + ')'
-
     setInterval(() => {
       const item = images[Math.floor(Math.random() * images.length)]
-      document.getElementById('app').style.backgroundImage = 'url(' + item + ')'
-    }, 5000)
+      document.getElementById('app').style.backgroundImage =
+        'url(' + item + ');'
+    }, 500)
   },
 }
 </script>
@@ -89,7 +86,5 @@ export default {
 #app {
   background-size: cover;
   background-position: center;
-  -webkit-transition: background-image 0.6s ease-in-out;
-  transition: background-image 0.6s ease-in-out;
 }
 </style>

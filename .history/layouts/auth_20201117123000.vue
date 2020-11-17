@@ -35,7 +35,6 @@
 </template>
 <script>
 export default {
-  name: 'auth',
   data() {
     return {
       show1: false,
@@ -89,7 +88,5 @@ export default {
 #app {
   background-size: cover;
   background-position: center;
-  -webkit-transition: background-image 0.6s ease-in-out;
-  transition: background-image 0.6s ease-in-out;
 }
 </style>
