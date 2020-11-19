@@ -6,7 +6,7 @@
           <v-card-title class="headline justify-center"
             >Авторизация</v-card-title
           >
-          <v-alert v-show="authError.length" type="error">{{
+          <v-alert type="error" v-show="authError.length">{{
             authError
           }}</v-alert>
           <v-row>
@@ -99,14 +99,23 @@ export default {
 
         if (data.result && data.result.ID) {
           this.isAuthLoading = false
+          this.$store.state.authenticated = true
           await this.$store.dispatch('auth/setUserData', {
             userData: data.result,
           })
+          console.log(this.userData)
           this.$router.push('/dashboard')
         } else {
           this.isAuthLoading = false
           this.authError = data.result.error
         }
+
+        await this.$store.dispatch('fetch', {
+          username: this.formUsername,
+          password: this.formPassword,
+        })
+        this.formUsername = ''
+        this.formPassword = ''
       } catch (e) {}
     },
     async logout() {

@@ -102,6 +102,9 @@ export default {
           await this.$store.dispatch('auth/setUserData', {
             userData: data.result,
           })
+          await this.$store.state.dispatch('auth/isAuthenticated', {
+            bool: true,
+          })
           this.$router.push('/dashboard')
         } else {
           this.isAuthLoading = false

@@ -1,17 +1,10 @@
 <template>
-  <div class="container">
-    <ReportCard />
-    <nuxt />
-  </div>
+  <div class="container"></div>
 </template>
 
 <script>
-import ReportCard from '~/components/reportCard.vue'
 export default {
   middleware: 'authenticated',
-  components: {
-    ReportCard,
-  },
   data() {
     return {}
   },
