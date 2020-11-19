@@ -2,50 +2,32 @@
   <v-app>
     <div class="auth-page d-flex align-center justify-center">
       <v-card class="d-flex card" max-width="374">
-        <v-form v-model="authForm" @submit.prevent="login">
-          <v-card-title class="headline justify-center"
-            >Авторизация</v-card-title
-          >
-          <v-alert type="error" v-show="authError.length">{{
-            authError
-          }}</v-alert>
-          <v-row>
-            <v-col>
-              <v-text-field
-                v-model="formUsername"
-                name="name"
-                label="Name"
-                clearable
-                solo
-                type="text"
-              ></v-text-field>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col>
-              <v-text-field
-                v-model="formPassword"
-                solo
-                :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
-                :rules="[rules.required, rules.min]"
-                :type="show2 ? 'text' : 'password'"
-                name="input-10-2"
-                label="Password"
-                @click:append="show2 = !show2"
-              ></v-text-field>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col>
-              <v-btn
-                color="blue"
-                :disabled="!authForm"
-                :loading="isAuthLoading"
-                @click="login"
-                >Войти</v-btn
-              >
-            </v-col>
-          </v-row>
+        <v-form @submit.prevent="login">
+          <v-col>
+            <v-text-field
+              v-model="formUsername"
+              name="name"
+              label="Name"
+              clearable
+              solo
+              type="text"
+            ></v-text-field>
+          </v-col>
+          <v-col>
+            <v-text-field
+              v-model="formPassword"
+              solo
+              :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
+              :rules="[rules.required, rules.min]"
+              :type="show2 ? 'text' : 'password'"
+              name="input-10-2"
+              label="Password"
+              @click:append="show2 = !show2"
+            ></v-text-field>
+          </v-col>
+          <v-col>
+            <v-btn color="blue" @click="login">Войти</v-btn>
+          </v-col>
         </v-form>
       </v-card>
     </div>
@@ -56,16 +38,13 @@ export default {
   name: 'Auth',
   data() {
     return {
-      authForm: false,
       formUsername: '',
       show2: '',
       formPassword: '',
       rules: {
         required: (value) => !!value || 'Required.',
-        min: (v) => v.length >= 6 || 'Min 6 characters',
+        min: (v) => v.length >= 8 || 'Min 8 characters',
       },
-      authError: '',
-      isAuthLoading: false,
     }
   },
   mounted() {
@@ -87,10 +66,8 @@ export default {
   methods: {
     async login() {
       try {
-        this.authError = ''
-        this.isAuthLoading = true
         const { data } = await this.$axios.post(
-          'https://gavali.fungeek.net/rest/1/l6yxn7688v0l6ewl/myuser.admin.auth',
+          'https://gavali.fungeek.net/rest/1/l6yxn7688v0l6ewl/myuser.manager.auth',
           {
             login: this.formUsername,
             password: btoa(this.formPassword),
@@ -98,14 +75,9 @@ export default {
         )
 
         if (data.result && data.result.ID) {
-          this.isAuthLoading = false
-          await this.$store.dispatch('auth/setUserData', {
-            userData: data.result,
-          })
-          this.$router.push('/dashboard')
         } else {
           this.isAuthLoading = false
-          this.authError = data.result.error
+          this.authError = 'Неверный пароль'
         }
 
         await this.$store.dispatch('fetch', {
