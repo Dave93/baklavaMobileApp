@@ -4,10 +4,9 @@
       <v-col cols="9">
         <v-list-item two-line>
           <v-list-item-content>
-            <v-list-item-title class="headline"> Gavali</v-list-item-title>
+            <v-list-item-title class="headline">Gavali</v-list-item-title>
             <v-list-item-subtitle
-            >Report for 17.11.2020y, 12:30 PM
-            </v-list-item-subtitle
+              >Report for 17.11.2020y, 12:30 PM</v-list-item-subtitle
             >
           </v-list-item-content>
         </v-list-item>
@@ -19,36 +18,41 @@
       </v-col>
     </v-row>
     <v-card-text>
-      <v-row align="center">
-        <v-col class="display-3" cols="6"> 1234567 so'm</v-col>
-        <v-col cols="6"> Total amount</v-col>
-      </v-row>
+      <v-row align="right"> Total amount </v-row>
+      <v-row align="center" class="display-1"> 1234567 so'm </v-row>
     </v-card-text>
 
     <v-list-item>
-      <v-list-item-icon>
+      <v-list-item>
         <v-list-item-subtitle>CASH</v-list-item-subtitle>
-      </v-list-item-icon>
+      </v-list-item>
       <v-list-item-subtitle>1 000 000,00</v-list-item-subtitle>
     </v-list-item>
 
     <v-list-item>
-      <v-list-item-icon>
+      <v-list-item>
         <v-list-item-subtitle>CARD</v-list-item-subtitle>
-      </v-list-item-icon>
+      </v-list-item>
       <v-list-item-subtitle>100 000,00</v-list-item-subtitle>
     </v-list-item>
 
     <v-list-item>
-      <v-list-item-icon>
+      <v-list-item>
         <v-list-item-subtitle>UDS</v-list-item-subtitle>
-      </v-list-item-icon>
+      </v-list-item>
       <v-list-item-subtitle>134 567,00</v-list-item-subtitle>
+    </v-list-item>
+
+    <v-list-item>
+      <v-list-item>
+        <v-list-item-subtitle>Discount</v-list-item-subtitle>
+      </v-list-item>
+      <v-list-item-subtitle>100 000,00</v-list-item-subtitle>
     </v-list-item>
 
     <v-slider
       v-model="time"
-      :max="6"
+      :max="4"
       :tick-labels="labels"
       class="mx-4"
       ticks
@@ -81,23 +85,23 @@ export default {
   name: 'ReportCard',
   data() {
     return {
-      labels: ['SU', 'MO', 'TU', 'WED', 'TH', 'FR', 'SA'],
+      labels: ['Today', 'Yesterday', 'Week', 'Month', 'Year'],
       time: 0,
       forecast: [
         {
-          day: 'Tuesday',
+          day: 'Yesterday',
           icon: 'mdi-white-balance-sunny',
-          temp: '24\xB0/12\xB0'
+          temp: '24\xB0/12\xB0',
         },
         {
-          day: 'Wednesday',
+          day: 'Week',
           icon: 'mdi-white-balance-sunny',
-          temp: '22\xB0/14\xB0'
+          temp: '22\xB0/14\xB0',
         },
-        { day: 'Thursday', icon: 'mdi-cloud', temp: '25\xB0/15\xB0' }
-      ]
+        { day: 'Month', icon: 'mdi-cloud', temp: '25\xB0/15\xB0' },
+      ],
     }
-  }
+  },
 }
 </script>
 

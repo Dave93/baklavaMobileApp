@@ -9,7 +9,8 @@
 import ReportCard from '~/components/reportCard.vue'
 export default {
   components: {
-    ReportCard },
+    ReportCard,
+  },
   data() {
     return {}
   },
