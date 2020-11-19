@@ -86,6 +86,7 @@ export default {
   },
   methods: {
     async login() {
+      console.log(process.browser)
       try {
         this.authError = ''
         this.isAuthLoading = true
