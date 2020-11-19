@@ -1,9 +1,15 @@
 <template>
-  <div class="container"></div>
+  <div class="container">
+    <ReportCard />
+    <nuxt />
+  </div>
 </template>
 
 <script>
+import ReportCard from '~/components/reportCard.vue'
 export default {
+  components: {
+    ReportCard },
   data() {
     return {}
   },
