@@ -8,7 +8,7 @@
 <script>
 import ReportCard from '~/components/reportCard.vue'
 export default {
-  middleware: 'authenticated',
+  //  middleware: 'authenticated',
   components: {
     ReportCard,
   },
