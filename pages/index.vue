@@ -10,6 +10,7 @@ import ReportCard from '~/components/reportCard.vue'
 export default {
   //  middleware: 'authenticated',
   components: {
+    // eslint-disable-next-line vue/no-unused-components
     ReportCard,
   },
   data() {
