@@ -85,8 +85,7 @@ export default {
     ]
 
     const item = images[Math.floor(Math.random() * images.length)]
-    document.getElementById('app').style.background =
-      'url(' + item + ') no-repeat center center fixed'
+    document.getElementById('app').style.background = 'url(' + item + ')'
 
     setInterval(() => {
       const item = images[Math.floor(Math.random() * images.length)]

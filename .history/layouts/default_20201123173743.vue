@@ -85,13 +85,11 @@ export default {
     ]
 
     const item = images[Math.floor(Math.random() * images.length)]
-    document.getElementById('app').style.background =
-      'url(' + item + ') no-repeat center center fixed'
+    document.getElementById('app').style.backgroundImage = 'url(' + item + ')'
 
     setInterval(() => {
       const item = images[Math.floor(Math.random() * images.length)]
-      document.getElementById('app').style.background =
-        'url(' + item + ') no-repeat center center fixed'
+      document.getElementById('app').style.backgroundImage = 'url(' + item + ')'
     }, 10000)
   },
   methods: {
@@ -107,8 +105,8 @@ export default {
 #app {
   background-size: cover;
   background-position: center;
-  -webkit-transition: background-image 0.6s ease-in-out;
-  transition: background-image 0.6s ease-in-out;
+  -webkit-transition: background-image 0.1s ease-in-out;
+  transition: background-image 0.1s ease-in-out;
 }
 
 .v-toolbar__content {
