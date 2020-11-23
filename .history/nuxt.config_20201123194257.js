@@ -48,10 +48,6 @@ export default {
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {},
 
-  server: {
-    port: 8456,
-  },
-
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
@@ -75,4 +71,50 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
+
+  manifest: {
+    name: 'test',
+    lang: 'ja',
+    // 'display':'standalone',
+    title: 'test',
+    'og:title': 'test',
+    description: 'test',
+    'og:description': 'test',
+    theme_color: '#FFFFFF',
+    background_color: '#FFFFFF',
+    start_url: `${dir}/`,
+    short_name: 'test',
+    icons: [
+      {
+        src: `${dir}/icon.png`,
+        size: '144x144',
+        type: 'image/png',
+      },
+      {
+        src: `${dir}/apple-touch-icon.png`,
+        size: '128x128',
+        type: 'image/png',
+      },
+      {
+        src: `${dir}/apple-touch-icon.png`,
+        size: '152x152',
+        type: 'image/png',
+      },
+      {
+        src: `${dir}/apple-touch-icon.png`,
+        size: '180x180',
+        type: 'image/png',
+      },
+      {
+        src: `${dir}/apple-touch-icon.png`,
+        size: '192x192',
+        type: 'image/png',
+      },
+      {
+        src: `${dir}/apple-touch-icon.png`,
+        size: '256x256',
+        type: 'image/png',
+      },
+    ],
+  },
 }
