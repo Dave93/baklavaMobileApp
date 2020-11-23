@@ -1,7 +1,10 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
-  ssr: false,
+  router: {
+    // Run the middleware/user-agent.js on every page
+    middleware: 'authenticate',
+  },
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     titleTemplate: '%s - gavali_report',
@@ -37,12 +40,6 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
-    [
-      'nuxt-vuex-localstorage',
-      {
-        localStorage: ['auth'],
-      },
-    ],
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
@@ -65,10 +62,6 @@ export default {
         },
       },
     },
-  },
-
-  router: {
-    middleware: 'authenticated',
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)

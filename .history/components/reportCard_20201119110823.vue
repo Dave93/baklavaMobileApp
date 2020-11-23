@@ -6,8 +6,9 @@
           <v-list-item-content>
             <v-list-item-title class="headline"> Gavali</v-list-item-title>
             <v-list-item-subtitle
-              >Report for 17.11.2020y, 12:30 PM
-            </v-list-item-subtitle>
+            >Report for 17.11.2020y, 12:30 PM
+            </v-list-item-subtitle
+            >
           </v-list-item-content>
         </v-list-item>
       </v-col>
@@ -86,17 +87,17 @@ export default {
         {
           day: 'Tuesday',
           icon: 'mdi-white-balance-sunny',
-          temp: '24\xB0/12\xB0',
+          temp: '24\xB0/12\xB0'
         },
         {
           day: 'Wednesday',
           icon: 'mdi-white-balance-sunny',
-          temp: '22\xB0/14\xB0',
+          temp: '22\xB0/14\xB0'
         },
-        { day: 'Thursday', icon: 'mdi-cloud', temp: '25\xB0/15\xB0' },
-      ],
+        { day: 'Thursday', icon: 'mdi-cloud', temp: '25\xB0/15\xB0' }
+      ]
     }
-  },
+  }
 }
 </script>
 

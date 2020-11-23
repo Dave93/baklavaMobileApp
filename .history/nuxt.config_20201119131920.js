@@ -1,7 +1,6 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
-  ssr: false,
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     titleTemplate: '%s - gavali_report',
@@ -40,7 +39,7 @@ export default {
     [
       'nuxt-vuex-localstorage',
       {
-        localStorage: ['auth'],
+        localStorage: ['userData'],
       },
     ],
   ],
