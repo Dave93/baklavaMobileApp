@@ -6,6 +6,7 @@
       :clipped="clipped"
       fixed
       app
+      class="justify-space-between"
     >
       <v-list>
         <v-list-item
@@ -107,9 +108,5 @@ export default {
   background-position: center;
   -webkit-transition: background-image 0.6s ease-in-out;
   transition: background-image 0.6s ease-in-out;
-}
-
-.v-toolbar__content {
-  justify-content: space-between;
 }
 </style>

@@ -26,8 +26,7 @@
     </v-navigation-drawer>
     <v-app-bar :clipped-left="clipped" fixed app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title v-text="title" />
-      <v-btn @click="logout"> Logout </v-btn>
+      <v-btn @click="logout" right> Logout </v-btn>
     </v-app-bar>
     <v-main>
       <v-container>
@@ -107,9 +106,5 @@ export default {
   background-position: center;
   -webkit-transition: background-image 0.6s ease-in-out;
   transition: background-image 0.6s ease-in-out;
-}
-
-.v-toolbar__content {
-  justify-content: space-between;
 }
 </style>

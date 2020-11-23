@@ -5,16 +5,13 @@ export const mutations = {
   setUserData(state, userData) {
     state.userData = userData
   },
-  clearUserData(state) {
-    state.userData = {}
+  clearUserData(state, userData) {
+    state.userData = userData
   },
 }
 export const actions = {
   setUserData({ commit }, { userData }) {
     commit('setUserData', userData)
-  },
-  clearUserData({ commit }) {
-    commit('clearUserData')
   },
 }
 

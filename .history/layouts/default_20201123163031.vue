@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app class="justify-space-between">
     <v-navigation-drawer
       v-model="drawer"
       :mini-variant="miniVariant"
@@ -107,9 +107,5 @@ export default {
   background-position: center;
   -webkit-transition: background-image 0.6s ease-in-out;
   transition: background-image 0.6s ease-in-out;
-}
-
-.v-toolbar__content {
-  justify-content: space-between;
 }
 </style>

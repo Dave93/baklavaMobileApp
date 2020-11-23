@@ -26,7 +26,20 @@
     </v-navigation-drawer>
     <v-app-bar :clipped-left="clipped" fixed app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <v-btn icon @click.stop="miniVariant = !miniVariant">
+        <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
+      </v-btn>
+      <v-btn icon @click.stop="clipped = !clipped">
+        <v-icon>mdi-application</v-icon>
+      </v-btn>
+      <v-btn icon @click.stop="fixed = !fixed">
+        <v-icon>mdi-minus</v-icon>
+      </v-btn>
       <v-toolbar-title v-text="title" />
+      <v-spacer />
+      <v-btn icon @click.stop="rightDrawer = !rightDrawer">
+        <v-icon>mdi-menu</v-icon>
+      </v-btn>
       <v-btn @click="logout"> Logout </v-btn>
     </v-app-bar>
     <v-main>
@@ -52,7 +65,6 @@
 
 <script>
 export default {
-  middleware: 'authenticated',
   data() {
     return {
       clipped: false,
@@ -93,9 +105,8 @@ export default {
     }, 10000)
   },
   methods: {
-    async logout() {
-      await this.$store.dispatch('auth/clearUserData')
-      this.$router.push('/auth')
+    logout() {
+      console.log(this.$store.dispatch('auth/clearUserData'))
     },
   },
 }
@@ -107,9 +118,5 @@ export default {
   background-position: center;
   -webkit-transition: background-image 0.6s ease-in-out;
   transition: background-image 0.6s ease-in-out;
-}
-
-.v-toolbar__content {
-  justify-content: space-between;
 }
 </style>

@@ -5,7 +5,7 @@ export const mutations = {
   setUserData(state, userData) {
     state.userData = userData
   },
-  clearUserData(state) {
+  clearUserData(state, userData) {
     state.userData = {}
   },
 }

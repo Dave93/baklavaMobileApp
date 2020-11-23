@@ -27,7 +27,7 @@
     <v-app-bar :clipped-left="clipped" fixed app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title v-text="title" />
-      <v-btn @click="logout"> Logout </v-btn>
+      <v-btn @click="logout" absolute right> Logout </v-btn>
     </v-app-bar>
     <v-main>
       <v-container>

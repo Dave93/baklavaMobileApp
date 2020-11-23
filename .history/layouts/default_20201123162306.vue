@@ -108,8 +108,4 @@ export default {
   -webkit-transition: background-image 0.6s ease-in-out;
   transition: background-image 0.6s ease-in-out;
 }
-
-.v-toolbar__content {
-  justify-content: space-between;
-}
 </style>
