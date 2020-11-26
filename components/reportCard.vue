@@ -92,7 +92,7 @@
     </v-card>
     <v-card
       v-for="price in prices"
-      :key="price.PRICE"
+      :key="price.label"
       class="mx-auto my-5"
       elevation="5"
       outlined
@@ -299,7 +299,7 @@ export default {
           separator: ' ',
           decimal: ',',
         }).format() + ' сум'
-
+      this.prices = []
       data.result.PRICES.forEach((el) => {
         this.prices.push({
           label: el.LABEL,
