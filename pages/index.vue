@@ -1,5 +1,7 @@
 <template>
-  <ReportCard />
+  <div class="mx-2 mt-6">
+    <ReportCard />
+  </div>
 </template>
 
 <script>
