@@ -90,6 +90,25 @@
         </div>
       </v-card-text>
     </v-card>
+    <v-card
+      v-for="price in prices"
+      :key="price.PRICE"
+      class="mx-auto my-5"
+      elevation="5"
+      outlined
+      shaped
+      color="purple"
+    >
+      <v-list-item three-line>
+        <v-list-item-content>
+          <div class="overline mb-4">{{ price.label }}</div>
+          <v-list-item-title class="headline mb-1">
+            {{ price.price }}
+          </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+    </v-card>
+
     <v-card class="mt-4 mx-auto" max-width="400" light>
       <v-sheet
         class="v-sheet--offset mx-auto"
@@ -131,6 +150,7 @@ export default {
     initOptions: {
       renderer: 'canvas',
     },
+    prices: [],
     pie: null,
     isLoadingData: false,
     pieInterval: null,
@@ -280,7 +300,18 @@ export default {
           decimal: ',',
         }).format() + ' сум'
 
-      console.log(data)
+      data.result.PRICES.forEach((el) => {
+        this.prices.push({
+          label: el.LABEL,
+          price:
+            currency(el.PRICE, {
+              symbol: '',
+              separator: ' ',
+              decimal: ',',
+            }).format() + ' сум',
+        })
+      })
+      console.log(this.prices)
       this.isLoadingData = false
     },
   },
