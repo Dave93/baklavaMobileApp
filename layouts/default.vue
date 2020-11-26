@@ -49,7 +49,7 @@
 
 <script>
 export default {
-  middleware: 'authenticated',
+  // middleware: 'authenticated',
   data() {
     return {
       clipped: false,

@@ -1,64 +1,42 @@
 <template>
-  <v-row dense>
-    <v-col v-for="(item, i) in items" :key="i" cols="12">
-      <v-card :color="item.color" dark max-width="400">
-        <div class="d-flex flex-no-wrap justify-space-between">
-          <div>
-            <v-card-title class="headline" v-text="item.title"></v-card-title>
+  <v-card class="mt-4 mx-auto" max-width="400" light>
+    <v-sheet
+      class="v-sheet--offset mx-auto"
+      color="cyan"
+      elevation="12"
+      max-width="calc(100% - 32px)"
+    >
+      <v-sparkline
+        :labels="labels"
+        :value="value"
+        color="white"
+        line-width="2"
+        padding="16"
+      ></v-sparkline>
+    </v-sheet>
 
-            <v-card-subtitle
-              class="display-1"
-              v-text="item.amount"
-            ></v-card-subtitle>
-          </div>
-        </div>
-      </v-card>
-    </v-col>
-  </v-row>
+    <v-card-text class="pt-0">
+      <div class="title mb-2" align="center">1 000 000.00</div>
+      <div class="subheading grey--text" align="center">Total amount</div>
+      <v-divider class="my-2"></v-divider>
+      <v-icon class="mr-2" small> mdi-clock </v-icon>
+      <span class="caption grey--text font-weight-light"
+        >last registration 26 minutes ago</span
+      >
+    </v-card-text>
+    <div>
+      <canvas id="myChart"></canvas>
+    </div>
+  </v-card>
 </template>
 
 <script>
 export default {
   data: () => ({
-    items: [
-      {
-        color: '#1F7087',
-        title: 'Total amount',
-        amount: '1 000 000.00',
-      },
-      {
-        color: '#952175',
-        title: 'Cash',
-        amount: '300 000.00',
-      },
-      {
-        color: '#952175',
-        title: 'Card',
-        amount: '300 000.00',
-      },
-      {
-        color: '#952175',
-        title: 'UDS',
-        amount: '300 000.00',
-      },
-      {
-        color: '#952175',
-        title: 'Discount',
-        amount: '300 000.00',
-      },
-      {
-        color: '#952175',
-        title: 'Check quantity',
-        amount: '300 000.00',
-      },
-      {
-        color: '#952175',
-        title: 'Check average',
-        amount: '300 000.00',
-      },
-    ],
+    labels: ['12am', '3am', '6am', '9am', '12pm', '3pm', '6pm', '9pm'],
+    value: [200, 675, 410, 390, 310, 460, 250, 240],
   }),
 }
 </script>
-
+.v-sheet--offset { top: -24px; position: relative; }
 <style scoped></style>
