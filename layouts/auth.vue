@@ -102,7 +102,7 @@ export default {
           await this.$store.dispatch('auth/setUserData', {
             userData: data.result,
           })
-          this.$router.push('/main')
+          this.$router.push('/')
         } else {
           this.isAuthLoading = false
           this.authError = data.result.error
