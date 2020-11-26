@@ -49,7 +49,7 @@
 
 <script>
 export default {
-  // middleware: 'authenticated',
+  middleware: 'authenticated',
   data() {
     return {
       clipped: false,
@@ -79,10 +79,6 @@ export default {
       'https://images.pexels.com/photos/2527671/pexels-photo-2527671.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
       'https://images.pexels.com/photos/710722/pexels-photo-710722.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
       'https://images.pexels.com/photos/681331/pexels-photo-681331.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-      'https://images.pexels.com/photos/4500629/pexels-photo-4500629.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-      'https://images.pexels.com/photos/358574/pexels-photo-358574.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260',
-      'https://images.pexels.com/photos/4642380/pexels-photo-4642380.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-      'https://images.pexels.com/photos/338400/pexels-photo-338400.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
     ]
 
     const item = images[Math.floor(Math.random() * images.length)]

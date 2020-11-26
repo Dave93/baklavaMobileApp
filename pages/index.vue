@@ -1,8 +1,5 @@
 <template>
-  <div class="container">
-    <ReportCard />
-    <nuxt />
-  </div>
+  <ReportCard />
 </template>
 
 <script>
