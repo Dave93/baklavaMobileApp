@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mt-4 mx-auto" max-width="400">
+  <v-card class="mt-4 mx-auto" max-width="400" light>
     <v-sheet
       class="v-sheet--offset mx-auto"
       color="cyan"
@@ -31,16 +31,6 @@
 </template>
 
 <script>
-// const ctx = document.getElementById('myChart').getContext('2d')
-const myChart = document.getElementById('myChart').getContext('2d')
-const doughnutChart = new Chart(myChart, {
-  type: 'doughnut',
-  data: {
-    labels: 'Total',
-    data: [600000, 300000, 100000],
-  },
-  options: {},
-})
 export default {
   data: () => ({
     labels: ['12am', '3am', '6am', '9am', '12pm', '3pm', '6pm', '9pm'],
