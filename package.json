@@ -14,9 +14,16 @@
     "@nuxtjs/auth": "^4.9.1",
     "@nuxtjs/axios": "^5.12.2",
     "@nuxtjs/pwa": "^3.2.2",
+    "chart.js": "^2.9.4",
     "core-js": "^3.6.5",
+    "currency.js": "^2.0.3",
+    "date-fns": "^2.16.1",
+    "echarts": "^4.9.0",
+    "echarts-gl": "^1.1.1",
     "nuxt": "^2.14.6",
-    "nuxt-vuex-localstorage": "^1.2.7"
+    "nuxt-vuex-localstorage": "^1.2.7",
+    "vue-chartjs": "^3.5.1",
+    "vue-echarts": "^5.0.0-beta.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^3.1.0",

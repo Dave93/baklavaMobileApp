@@ -1,7 +1,6 @@
 <template>
-  <div class="container">
+  <div class="mx-2 mt-6">
     <ReportCard />
-    <nuxt />
   </div>
 </template>
 
