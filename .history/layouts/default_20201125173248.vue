@@ -73,7 +73,7 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Gavali report',
+      title: 'Vuetify.js',
     }
   },
   mounted() {

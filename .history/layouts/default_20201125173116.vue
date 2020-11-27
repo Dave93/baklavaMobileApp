@@ -73,7 +73,7 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Gavali report',
+      title: 'Vuetify.js',
     }
   },
   mounted() {
@@ -89,6 +89,7 @@ export default {
     ]
 
     const item = images[Math.floor(Math.random() * images.length)]
+    console.log(item)
     document.getElementById('app').style.background =
       'url(' + item + ') no-repeat center center fixed'
 
