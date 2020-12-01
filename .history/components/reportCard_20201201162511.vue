@@ -5,8 +5,8 @@
         <v-row>
           <v-col cols="12">
             <v-select
-              v-model="defaultPeriodValue"
               :items="filterPeriodTypes"
+              v-model="defaultPeriodValue"
             ></v-select>
           </v-col>
         </v-row>
@@ -49,8 +49,8 @@
           <v-col class="text-center">
             <v-btn
               color="primary"
-              :loading="isLoadingData"
               @click="refreshData"
+              :loading="isLoadingData"
             >
               Обновить
             </v-btn>
@@ -59,12 +59,12 @@
       </v-card>
     </v-form>
     <v-card
-      v-if="totalPrice.length"
       class="mx-auto my-5"
       elevation="5"
       outlined
       shaped
       color="purple"
+      v-if="totalPrice.length"
     >
       <v-list-item three-line>
         <v-list-item-content>
@@ -75,7 +75,7 @@
         </v-list-item-content>
       </v-list-item>
     </v-card>
-    <v-card elevation="5" class="my-5" width="100%">
+    <v-card elevation="5" class="my-5">
       <v-card-text>
         <div v-if="pie">
           <v-chart ref="pie" :options="pie" :init-options="initOptions" />
@@ -102,6 +102,34 @@
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
+    </v-card>
+      <v-sheet
+        class="v-sheet--offset mx-auto"
+        color="cyan"
+        elevation="12"
+        max-width="calc(100% - 32px)"
+      >
+        <v-sparkline
+          :labels="labels"
+          :value="value"
+          color="white"
+          line-width="2"
+          padding="16"
+        ></v-sparkline>
+      </v-sheet>
+
+      <v-card-text class="pt-0">
+        <div class="title mb-2" align="center">1 000 000.00</div>
+        <div class="subheading grey--text" align="center">Total amount</div>
+        <v-divider class="my-2"></v-divider>
+        <v-icon class="mr-2" small> mdi-clock </v-icon>
+        <span class="caption grey--text font-weight-light"
+          >last registration 26 minutes ago</span
+        >
+      </v-card-text>
+      <div>
+        <canvas id="myChart"></canvas>
+      </div>
     </v-card>
   </div>
 </template>
@@ -182,7 +210,6 @@ export default {
           name: price.LABEL,
         }))
         const pieData = {
-          responsive: true,
           title: {
             text: 'Суммы в разрезе способов оплат',
             x: 'center',
@@ -255,7 +282,7 @@ export default {
               seriesIndex: 0,
               dataIndex,
             })
-          }, 3000)
+          }, 1500)
         }, 100)
       }
 

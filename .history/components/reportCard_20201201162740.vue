@@ -5,8 +5,8 @@
         <v-row>
           <v-col cols="12">
             <v-select
-              v-model="defaultPeriodValue"
               :items="filterPeriodTypes"
+              v-model="defaultPeriodValue"
             ></v-select>
           </v-col>
         </v-row>
@@ -49,60 +49,60 @@
           <v-col class="text-center">
             <v-btn
               color="primary"
-              :loading="isLoadingData"
               @click="refreshData"
+              :loading="isLoadingData"
             >
               Обновить
             </v-btn>
           </v-col>
         </v-row>
       </v-card>
+      <v-card
+        class="mx-auto my-5"
+        elevation="5"
+        outlined
+        shaped
+        color="purple"
+        v-if="totalPrice.length"
+      >
+        <v-list-item three-line>
+          <v-list-item-content>
+            <div class="overline mb-4">Общая сумма заказов</div>
+            <v-list-item-title class="headline mb-1">{{
+              totalPrice
+            }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-card>
+      <v-card elevation="5" class="my-5">
+        <v-card-text>
+          <div v-if="pie">
+            <v-chart ref="pie" :options="pie" :init-options="initOptions" />
+          </div>
+          <div v-else class="text-center">
+            <h2>Отсутствуют данные</h2>
+          </div>
+        </v-card-text>
+      </v-card>
+      <v-card
+        v-for="price in prices"
+        :key="price.label"
+        class="mx-auto my-5"
+        elevation="5"
+        outlined
+        shaped
+        color="purple"
+      >
+        <v-list-item three-line>
+          <v-list-item-content>
+            <div class="overline mb-4">{{ price.label }}</div>
+            <v-list-item-title class="headline mb-1">
+              {{ price.price }}
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-card>
     </v-form>
-    <v-card
-      v-if="totalPrice.length"
-      class="mx-auto my-5"
-      elevation="5"
-      outlined
-      shaped
-      color="purple"
-    >
-      <v-list-item three-line>
-        <v-list-item-content>
-          <div class="overline mb-4">Общая сумма заказов</div>
-          <v-list-item-title class="headline mb-1">{{
-            totalPrice
-          }}</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-    </v-card>
-    <v-card elevation="5" class="my-5" width="100%">
-      <v-card-text>
-        <div v-if="pie">
-          <v-chart ref="pie" :options="pie" :init-options="initOptions" />
-        </div>
-        <div v-else class="text-center">
-          <h2>Отсутствуют данные</h2>
-        </div>
-      </v-card-text>
-    </v-card>
-    <v-card
-      v-for="price in prices"
-      :key="price.label"
-      class="mx-auto my-5"
-      elevation="5"
-      outlined
-      shaped
-      color="purple"
-    >
-      <v-list-item three-line>
-        <v-list-item-content>
-          <div class="overline mb-4">{{ price.label }}</div>
-          <v-list-item-title class="headline mb-1">
-            {{ price.price }}
-          </v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-    </v-card>
   </div>
 </template>
 
@@ -182,7 +182,6 @@ export default {
           name: price.LABEL,
         }))
         const pieData = {
-          responsive: true,
           title: {
             text: 'Суммы в разрезе способов оплат',
             x: 'center',

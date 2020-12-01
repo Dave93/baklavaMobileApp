@@ -5,8 +5,8 @@
         <v-row>
           <v-col cols="12">
             <v-select
-              v-model="defaultPeriodValue"
               :items="filterPeriodTypes"
+              v-model="defaultPeriodValue"
             ></v-select>
           </v-col>
         </v-row>
@@ -49,8 +49,8 @@
           <v-col class="text-center">
             <v-btn
               color="primary"
-              :loading="isLoadingData"
               @click="refreshData"
+              :loading="isLoadingData"
             >
               Обновить
             </v-btn>
@@ -59,12 +59,12 @@
       </v-card>
     </v-form>
     <v-card
-      v-if="totalPrice.length"
       class="mx-auto my-5"
       elevation="5"
       outlined
       shaped
       color="purple"
+      v-if="totalPrice.length"
     >
       <v-list-item three-line>
         <v-list-item-content>
@@ -110,6 +110,8 @@
 import { formatWithOptions, parseISO } from 'date-fns/fp'
 import { ru } from 'date-fns/locale'
 import currency from 'currency.js'
+import Chart from 'chart.js'
+const myChart = new Chart()
 export default {
   data: () => ({
     initOptions: {
@@ -182,7 +184,6 @@ export default {
           name: price.LABEL,
         }))
         const pieData = {
-          responsive: true,
           title: {
             text: 'Суммы в разрезе способов оплат',
             x: 'center',
@@ -278,6 +279,7 @@ export default {
         })
       })
       this.isLoadingData = false
+      myChart.resize('100px')
     },
   },
 }

@@ -182,7 +182,6 @@ export default {
           name: price.LABEL,
         }))
         const pieData = {
-          responsive: true,
           title: {
             text: 'Суммы в разрезе способов оплат',
             x: 'center',
