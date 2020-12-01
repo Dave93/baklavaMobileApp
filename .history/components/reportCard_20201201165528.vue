@@ -78,12 +78,7 @@
     <v-card elevation="5" class="my-5">
       <v-card-text>
         <div v-if="pie">
-          <v-chart
-            :options="pie"
-            :init-options="initOptions"
-            ref="pie"
-            autoresize
-          />
+          <v-chart ref="pie" :options="pie" :init-options="initOptions" />
         </div>
         <div v-else class="text-center">
           <h2>Отсутствуют данные</h2>
@@ -108,45 +103,6 @@
         </v-list-item-content>
       </v-list-item>
     </v-card>
-    <v-card
-      class="mx-auto my-5"
-      elevation="5"
-      outlined
-      shaped
-      color="purple"
-      v-if="totalPrice.length"
-    >
-      <v-list-item three-line>
-        <v-list-item-content>
-          <div class="overline mb-4">Общая сумма скидок</div>
-          <v-list-item-title class="headline mb-1">{{
-            totalDiscount
-          }}</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-    </v-card>
-
-    <v-card class="mt-4 mx-auto" max-width="400" light>
-      <v-sheet
-        class="v-sheet--offset mx-auto"
-        color="cyan"
-        elevation="12"
-        max-width="calc(100% - 32px)"
-      >
-        <v-sparkline
-          :labels="labels"
-          :value="value"
-          color="white"
-          line-width="2"
-          padding="16"
-        ></v-sparkline>
-      </v-sheet>
-
-      <v-card-text class="pt-0">
-        <div class="title mb-2" align="center">1 000 000.00</div>
-        <div class="subheading grey--text" align="center">Total amount</div>
-      </v-card-text>
-    </v-card>
   </div>
 </template>
 
@@ -164,7 +120,6 @@ export default {
     isLoadingData: false,
     pieInterval: null,
     totalPrice: '',
-    totalDiscount: '',
     filterDatePickerMinDate: new Date().toISOString().substr(0, 10),
     filterDatePickerDates: [new Date().toISOString().substr(0, 10)],
     showFilterDatePickker: false,
@@ -231,6 +186,7 @@ export default {
             text: 'Суммы в разрезе способов оплат',
             x: 'center',
           },
+          responsive: true,
           tooltip: {
             trigger: 'item',
             formatter: (params) => {
@@ -299,19 +255,12 @@ export default {
               seriesIndex: 0,
               dataIndex,
             })
-          }, 1500)
-          pie.resize()
+          }, 3000)
         }, 100)
       }
 
       this.totalPrice =
         currency(+data.result.TOTAL_PRICE, {
-          symbol: '',
-          separator: ' ',
-          decimal: ',',
-        }).format() + ' сум'
-      this.totalDiscount =
-        currency(+data.result.TOTAL_DISCOUNT, {
           symbol: '',
           separator: ' ',
           decimal: ',',
@@ -328,11 +277,10 @@ export default {
             }).format() + ' сум',
         })
       })
-      console.log(this.prices)
       this.isLoadingData = false
     },
   },
 }
 </script>
-.v-sheet--offset { top: -24px; position: relative; }
+
 <style scoped></style>
