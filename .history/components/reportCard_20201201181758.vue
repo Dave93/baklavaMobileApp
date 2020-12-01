@@ -103,6 +103,16 @@
         </v-list-item-content>
       </v-list-item>
     </v-card>
+    <v-card class="mx-auto my-5" elevation="5" outlined shaped color="purple">
+      <v-list-item three-line>
+        <v-list-item-content>
+          <div class="overline mb-4">Скидка</div>
+          <v-list-item-title class="headline mb-1">
+            {{ data.result.TOTAL_DISCOUNT }}
+          </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+    </v-card>
   </div>
 </template>
 
@@ -182,6 +192,7 @@ export default {
           name: price.LABEL,
         }))
         const pieData = {
+          responsive: true,
           title: {
             text: 'Суммы в разрезе способов оплат',
             x: 'center',
