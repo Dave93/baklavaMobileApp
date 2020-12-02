@@ -253,7 +253,7 @@ export default {
   },
   async mounted() {
     const { data } = await this.$axios.post(
-      'https://gavali.fungeek.net/rest/1/l6yxn7688v0l6ewl/mysale.getStoreList'
+      'https://crm.gavali.uz/rest/1/l6yxn7688v0l6ewl/mysale.getStoreList'
     )
     console.log(data)
 
@@ -280,7 +280,7 @@ export default {
       this.isLoadingData = true
 
       const { data } = await this.$axios.post(
-        'https://gavali.fungeek.net/rest/1/l6yxn7688v0l6ewl/mysale.getReportMobApp',
+        'https://crm.gavali.uz/rest/1/l6yxn7688v0l6ewl/mysale.getReportMobApp',
         {
           periodType: this.defaultPeriodValue,
           period: this.filterDatePickerDates,
