@@ -278,7 +278,6 @@ export default {
   },
 }
 </script>
-.v-sheet--offset { top: -24px; position: relative; }
 <style scoped>
 .bottom-gradient {
   background-image: linear-gradient(
