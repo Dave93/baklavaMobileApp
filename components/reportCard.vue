@@ -25,7 +25,7 @@
     </v-form>
     <v-card
       v-if="totalPrice.length"
-      class="mx-auto my-5"
+      class="mx-auto my-5 bottom-gradient"
       elevation="5"
       outlined
       shaped
@@ -33,10 +33,11 @@
     >
       <v-list-item three-line>
         <v-list-item-content>
-          <div class="overline mb-4">Общая сумма заказов</div>
-          <v-list-item-title class="headline mb-1">{{
-            totalPrice
-          }}</v-list-item-title>
+          <div class="overline mb-4 font-italic">Общая сумма заказов</div>
+          <v-list-item-title
+            class="headline mb-1 font-weight-medium white--text"
+            >{{ totalPrice }}</v-list-item-title
+          >
         </v-list-item-content>
       </v-list-item>
     </v-card>
@@ -58,7 +59,7 @@
     <v-card
       v-for="price in prices"
       :key="price.label"
-      class="mx-auto my-5"
+      class="mx-auto my-5 bottom-gradient"
       elevation="5"
       outlined
       shaped
@@ -66,8 +67,10 @@
     >
       <v-list-item three-line>
         <v-list-item-content>
-          <div class="overline mb-4">{{ price.label }}</div>
-          <v-list-item-title class="headline mb-1">
+          <div class="overline mb-4 font-italic">{{ price.label }}</div>
+          <v-list-item-title
+            class="headline mb-1 font-weight-medium white--text"
+          >
             {{ price.price }}
           </v-list-item-title>
         </v-list-item-content>
@@ -75,7 +78,7 @@
     </v-card>
     <v-card
       v-if="totalPrice.length"
-      class="mx-auto my-5"
+      class="mx-auto my-5 bottom-gradient"
       elevation="5"
       outlined
       shaped
@@ -83,10 +86,11 @@
     >
       <v-list-item three-line>
         <v-list-item-content>
-          <div class="overline mb-4">Общая сумма скидок</div>
-          <v-list-item-title class="headline mb-1">{{
-            totalDiscount
-          }}</v-list-item-title>
+          <div class="overline mb-4 font-italic">Общая сумма скидок</div>
+          <v-list-item-title
+            class="headline mb-1 font-weight-medium white--text"
+            >{{ totalDiscount }}</v-list-item-title
+          >
         </v-list-item-content>
       </v-list-item>
     </v-card>
@@ -134,8 +138,6 @@ export default {
         value: 'custom_period',
       },
     ],
-    labels: ['12am', '3am', '6am', '9am', '12pm', '3pm', '6pm', '9pm'],
-    value: [200, 675, 410, 390, 310, 460, 250, 240],
   }),
   computed: {
     computedDateFormattedMoment() {
@@ -277,4 +279,12 @@ export default {
 }
 </script>
 .v-sheet--offset { top: -24px; position: relative; }
-<style scoped></style>
+<style scoped>
+.bottom-gradient {
+  background-image: linear-gradient(
+    to top,
+    rgba(0, 0.5, 0.5, 0.8) 0%,
+    transparent 72px
+  );
+}
+</style>
