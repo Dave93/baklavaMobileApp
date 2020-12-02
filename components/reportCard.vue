@@ -57,7 +57,7 @@
     </v-card>
     <v-card
       v-for="price in prices"
-      :key="price.label"
+      :key="price.LABEL"
       class="mx-auto my-5"
       elevation="5"
       outlined
@@ -66,9 +66,9 @@
     >
       <v-list-item three-line>
         <v-list-item-content>
-          <div class="overline mb-4">{{ price.label }}</div>
+          <div class="overline mb-4">{{ price.LABEL }}</div>
           <v-list-item-title class="headline mb-1">
-            {{ price.price }}
+            {{ price.PRICE | money }}
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
@@ -259,19 +259,16 @@ export default {
           separator: ' ',
           decimal: ',',
         }).format() + ' сум'
-      this.prices = []
-      data.result.PRICES.forEach((el) => {
-        this.prices.push({
-          label: el.LABEL,
-          price:
-            currency(el.PRICE, {
-              symbol: '',
-              separator: ' ',
-              decimal: ',',
-            }).format() + ' сум',
-        })
-      })
+      this.prices = data.result.PRICES
       this.isLoadingData = false
+    },
+  },
+  filters: {
+    money: (value) => {
+      return (
+        value &&
+        currency(+value, { symbol: '', separator: ' ', decimal: ',' }).format()
+      )
     },
   },
 }
