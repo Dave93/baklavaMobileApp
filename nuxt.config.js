@@ -47,7 +47,13 @@ export default {
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {},
-
+  pwa: {
+    manifest: {
+      name: 'Gavali Report',
+      lang: 'ru',
+      useWebmanifestExtension: false,
+    },
+  },
   server: {
     port: 8456,
   },
