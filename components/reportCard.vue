@@ -70,7 +70,7 @@
         <v-list-item-content>
           <div class="overline mb-4">Общая сумма заказов</div>
           <v-list-item-title
-            class="headline mb-1 font-weight-medium white--text"
+            class="headline mb-1 font-weight-medium white--text text-center"
             >{{ totalPrice }}</v-list-item-title
           >
         </v-list-item-content>
@@ -103,7 +103,7 @@
       <v-list-item three-line>
         <v-list-item-content>
           <div class="overline mb-4">{{ price.LABEL }}</div>
-          <v-list-item-title class="headline mb-1">
+          <v-list-item-title class="headline mb-1 text-center">
             {{ price.PRICE | money }}
           </v-list-item-title>
         </v-list-item-content>
@@ -121,7 +121,7 @@
         <v-list-item-content>
           <div class="overline mb-4">Общая сумма скидок</div>
           <v-list-item-title
-            class="headline mb-1 font-weight-medium white--text"
+            class="headline mb-1 font-weight-medium white--text text-center"
             >{{ totalDiscount }}</v-list-item-title
           >
         </v-list-item-content>
@@ -139,8 +139,8 @@
         <v-list-item-content>
           <div class="overline mb-4">количество заказов</div>
           <v-list-item-title
-            class="headline mb-1 font-weight-medium white--text"
-            >{{ orderCount | money }}</v-list-item-title
+            class="headline mb-1 font-weight-medium white--text text-center"
+            >{{ orderCount }}</v-list-item-title
           >
         </v-list-item-content>
       </v-list-item>
@@ -157,7 +157,7 @@
         <v-list-item-content>
           <div class="overline mb-4">Средная сумма заказов</div>
           <v-list-item-title
-            class="headline mb-1 font-weight-medium white--text"
+            class="headline mb-1 font-weight-medium white--text text-center"
             >{{ priceAverage | money }}</v-list-item-title
           >
         </v-list-item-content>
@@ -175,7 +175,11 @@ export default {
     money: (value) => {
       return (
         value &&
-        currency(+value, { symbol: '', separator: ' ', decimal: ',' }).format()
+        currency(+value, {
+          symbol: '',
+          separator: ' ',
+          decimal: ',',
+        }).format() + ' сум'
       )
     },
   },
@@ -339,7 +343,7 @@ export default {
         }).format() + ' сум'
       this.prices = data.result.PRICES
 
-      this.orderCount = data.result.TOTAL_ORDER_COUNT
+      this.orderCount = +data.result.TOTAL_ORDER_COUNT + ' штук'
 
       this.priceAverage = data.result.TOTAL_PRICE_AVERAGE
 
