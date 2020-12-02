@@ -44,9 +44,9 @@
       <v-card-text>
         <div v-if="pie">
           <v-chart
-            ref="pie"
             :options="pie"
             :init-options="initOptions"
+            ref="pie"
             autoresize
           />
         </div>
@@ -74,12 +74,12 @@
       </v-list-item>
     </v-card>
     <v-card
-      v-if="totalPrice.length"
       class="mx-auto my-5"
       elevation="5"
       outlined
       shaped
       color="purple"
+      v-if="totalPrice.length"
     >
       <v-list-item three-line>
         <v-list-item-content>
@@ -89,6 +89,28 @@
           }}</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
+    </v-card>
+
+    <v-card class="mt-4 mx-auto" max-width="400" light>
+      <v-sheet
+        class="v-sheet--offset mx-auto"
+        color="cyan"
+        elevation="12"
+        max-width="calc(100% - 32px)"
+      >
+        <v-sparkline
+          :labels="labels"
+          :value="value"
+          color="white"
+          line-width="2"
+          padding="16"
+        ></v-sparkline>
+      </v-sheet>
+
+      <v-card-text class="pt-0">
+        <div class="title mb-2" align="center">1 000 000.00</div>
+        <div class="subheading grey--text" align="center">Total amount</div>
+      </v-card-text>
     </v-card>
   </div>
 </template>
