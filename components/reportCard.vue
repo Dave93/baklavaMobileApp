@@ -46,6 +46,15 @@
           </v-col>
         </v-row>
         <v-row>
+          <v-col cols="12">
+            <v-select
+              v-model="defaultBranch"
+              :items="branches"
+              label="Филиал"
+            ></v-select>
+          </v-col>
+        </v-row>
+        <v-row>
           <v-col class="text-center">
             <v-btn
               :loading="isLoadingData"
@@ -217,6 +226,13 @@ export default {
         value: 'custom_period',
       },
     ],
+    defaultBranch: 'all',
+    branches: [
+      {
+        text: 'Все',
+        value: 'all',
+      },
+    ],
   }),
   computed: {
     computedDateFormattedMoment() {
@@ -231,6 +247,30 @@ export default {
         : ''
     },
   },
+  async mounted() {
+    const { data } = await this.$axios.post(
+      'https://gavali.fungeek.net/rest/1/l6yxn7688v0l6ewl/mysale.getStoreList'
+    )
+    console.log(data)
+
+    this.branches = [
+      {
+        text: 'Все',
+        value: 'all',
+      },
+    ]
+
+    if (data.result) {
+      data.result.map((item) => {
+        this.branches.push({
+          text: item.TITLE,
+          value: item.ID,
+        })
+      })
+    }
+
+    this.refreshData()
+  },
   methods: {
     async refreshData() {
       this.isLoadingData = true
@@ -240,6 +280,7 @@ export default {
         {
           periodType: this.defaultPeriodValue,
           period: this.filterDatePickerDates,
+          branch: this.defaultBranch,
         }
       )
 
