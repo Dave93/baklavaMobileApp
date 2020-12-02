@@ -58,8 +58,8 @@
     </v-card>
     <v-card
       v-for="price in prices"
-      :key="price.label"
-      class="mx-auto my-5 bottom-gradient"
+      :key="price.LABEL"
+      class="mx-auto my-5"
       elevation="5"
       outlined
       shaped
@@ -67,11 +67,9 @@
     >
       <v-list-item three-line>
         <v-list-item-content>
-          <div class="overline mb-4 font-italic">{{ price.label }}</div>
-          <v-list-item-title
-            class="headline mb-1 font-weight-medium white--text"
-          >
-            {{ price.price }}
+          <div class="overline mb-4">{{ price.LABEL }}</div>
+          <v-list-item-title class="headline mb-1">
+            {{ price.PRICE | money }}
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
@@ -142,7 +140,6 @@ export default {
   computed: {
     computedDateFormattedMoment() {
       const arrival = this.filterDatePickerDates
-      // const dateToString = formatWithOptions({ locale: ru }, 'D MMM')
       return Array.isArray(arrival)
         ? arrival
             .sort()
@@ -179,8 +176,6 @@ export default {
           tooltip: {
             trigger: 'item',
             formatter: (params) => {
-              // console.log(params)
-              // console.log('{a} <br/>{b} : {c} ({d}%)')
               return (
                 params.name +
                 ' <br />' +
@@ -261,24 +256,20 @@ export default {
           separator: ' ',
           decimal: ',',
         }).format() + ' сум'
-      this.prices = []
-      data.result.PRICES.forEach((el) => {
-        this.prices.push({
-          label: el.LABEL,
-          price:
-            currency(el.PRICE, {
-              symbol: '',
-              separator: ' ',
-              decimal: ',',
-            }).format() + ' сум',
-        })
-      })
+      this.prices = data.result.PRICES
       this.isLoadingData = false
+    },
+  },
+  filters: {
+    money: (value) => {
+      return (
+        value &&
+        currency(+value, { symbol: '', separator: ' ', decimal: ',' }).format()
+      )
     },
   },
 }
 </script>
-.v-sheet--offset { top: -24px; position: relative; }
 <style scoped>
 .bottom-gradient {
   background-image: linear-gradient(
