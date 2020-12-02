@@ -11,41 +11,6 @@
           </v-col>
         </v-row>
         <v-row>
-          <v-col cols="12">
-            <v-menu
-              v-model="showFilterDatePickker"
-              :close-on-content-click="false"
-              :nudge-right="40"
-              transition="scale-transition"
-              offset-y
-              min-width="290px"
-            >
-              <template v-slot:activator="{ on, attrs }">
-                <v-text-field
-                  :value="computedDateFormattedMoment"
-                  label="Период отчёта"
-                  placeholder="Выберите период"
-                  v-bind="attrs"
-                  :disabled="defaultPeriodValue != 'custom_period'"
-                  :readonly="defaultPeriodValue != 'custom_period'"
-                  outlined
-                  allowed-dates
-                  v-on="on"
-                ></v-text-field>
-              </template>
-              <v-date-picker
-                v-model="filterDatePickerDates"
-                locale="ru"
-                show-current
-                range
-                no-title
-                @input="showFilterDatePickker = false"
-              >
-              </v-date-picker>
-            </v-menu>
-          </v-col>
-        </v-row>
-        <v-row>
           <v-col class="text-center">
             <v-btn
               :loading="isLoadingData"
@@ -60,7 +25,7 @@
     </v-form>
     <v-card
       v-if="totalPrice.length"
-      class="mx-auto my-5 bottom-gradient"
+      class="mx-auto my-5"
       elevation="5"
       outlined
       shaped
@@ -69,10 +34,9 @@
       <v-list-item three-line>
         <v-list-item-content>
           <div class="overline mb-4">Общая сумма заказов</div>
-          <v-list-item-title
-            class="headline mb-1 font-weight-medium white--text"
-            >{{ totalPrice }}</v-list-item-title
-          >
+          <v-list-item-title class="headline mb-1">{{
+            totalPrice
+          }}</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
     </v-card>
@@ -93,8 +57,8 @@
     </v-card>
     <v-card
       v-for="price in prices"
-      :key="price.LABEL"
-      class="mx-auto my-5 bottom-gradient"
+      :key="price.label"
+      class="mx-auto my-5"
       elevation="5"
       outlined
       shaped
@@ -102,16 +66,16 @@
     >
       <v-list-item three-line>
         <v-list-item-content>
-          <div class="overline mb-4">{{ price.LABEL }}</div>
+          <div class="overline mb-4">{{ price.label }}</div>
           <v-list-item-title class="headline mb-1">
-            {{ price.PRICE | money }}
+            {{ price.price }}
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
     </v-card>
     <v-card
       v-if="totalPrice.length"
-      class="mx-auto my-5 bottom-gradient"
+      class="mx-auto my-5"
       elevation="5"
       outlined
       shaped
@@ -120,46 +84,9 @@
       <v-list-item three-line>
         <v-list-item-content>
           <div class="overline mb-4">Общая сумма скидок</div>
-          <v-list-item-title
-            class="headline mb-1 font-weight-medium white--text"
-            >{{ totalDiscount }}</v-list-item-title
-          >
-        </v-list-item-content>
-      </v-list-item>
-    </v-card>
-    <v-card
-      v-if="totalPrice.length"
-      class="mx-auto my-5 bottom-gradient"
-      elevation="5"
-      outlined
-      shaped
-      color="purple"
-    >
-      <v-list-item three-line>
-        <v-list-item-content>
-          <div class="overline mb-4">количество заказов</div>
-          <v-list-item-title
-            class="headline mb-1 font-weight-medium white--text"
-            >{{ orderCount | money }}</v-list-item-title
-          >
-        </v-list-item-content>
-      </v-list-item>
-    </v-card>
-    <v-card
-      v-if="totalPrice.length"
-      class="mx-auto my-5 bottom-gradient"
-      elevation="5"
-      outlined
-      shaped
-      color="purple"
-    >
-      <v-list-item three-line>
-        <v-list-item-content>
-          <div class="overline mb-4">Средная сумма заказов</div>
-          <v-list-item-title
-            class="headline mb-1 font-weight-medium white--text"
-            >{{ priceAverage | money }}</v-list-item-title
-          >
+          <v-list-item-title class="headline mb-1">{{
+            totalDiscount
+          }}</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
     </v-card>
@@ -171,14 +98,6 @@ import { formatWithOptions, parseISO } from 'date-fns/fp'
 import { ru } from 'date-fns/locale'
 import currency from 'currency.js'
 export default {
-  filters: {
-    money: (value) => {
-      return (
-        value &&
-        currency(+value, { symbol: '', separator: ' ', decimal: ',' }).format()
-      )
-    },
-  },
   data: () => ({
     initOptions: {
       renderer: 'canvas',
@@ -189,8 +108,6 @@ export default {
     pieInterval: null,
     totalPrice: '',
     totalDiscount: '',
-    orderCount: '',
-    priceAverage: '',
     filterDatePickerMinDate: new Date().toISOString().substr(0, 10),
     filterDatePickerDates: [new Date().toISOString().substr(0, 10)],
     showFilterDatePickker: false,
@@ -217,17 +134,13 @@ export default {
         value: 'custom_period',
       },
     ],
-    defaultBranch: 'all',
-    branches: [
-      {
-        text: 'Все',
-        value: 'all',
-      },
-    ],
+    labels: ['12am', '3am', '6am', '9am', '12pm', '3pm', '6pm', '9pm'],
+    value: [200, 675, 410, 390, 310, 460, 250, 240],
   }),
   computed: {
     computedDateFormattedMoment() {
       const arrival = this.filterDatePickerDates
+      // const dateToString = formatWithOptions({ locale: ru }, 'D MMM')
       return Array.isArray(arrival)
         ? arrival
             .sort()
@@ -259,11 +172,13 @@ export default {
         const pieData = {
           title: {
             text: 'Суммы в разрезе способов оплат',
-            x: 'start',
+            x: 'center',
           },
           tooltip: {
             trigger: 'item',
             formatter: (params) => {
+              // console.log(params)
+              // console.log('{a} <br/>{b} : {c} ({d}%)')
               return (
                 params.name +
                 ' <br />' +
@@ -329,7 +244,7 @@ export default {
             })
           }, 1500)
           pie.resize()
-        }, 200)
+        }, 100)
       }
 
       this.totalPrice =
@@ -344,26 +259,21 @@ export default {
           separator: ' ',
           decimal: ',',
         }).format() + ' сум'
-      this.prices = data.result.PRICES
-
-      this.orderCount = data.result.TOTAL_ORDER_COUNT
-
-      this.priceAverage = data.result.TOTAL_PRICE_AVERAGE
-
+      this.prices = []
+      data.result.PRICES.forEach((el) => {
+        this.prices.push({
+          label: el.LABEL,
+          price:
+            currency(el.PRICE, {
+              symbol: '',
+              separator: ' ',
+              decimal: ',',
+            }).format() + ' сум',
+        })
+      })
       this.isLoadingData = false
     },
   },
 }
 </script>
-<style scoped>
-.bottom-gradient {
-  background-image: linear-gradient(
-    to top,
-    rgba(0, 0.5, 0.5, 0.8) 0%,
-    transparent 72px
-  );
-}
-.echarts {
-  width: 100%;
-}
-</style>
+<style scoped></style>
