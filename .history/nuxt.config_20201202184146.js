@@ -4,7 +4,7 @@ export default {
   ssr: false,
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    titleTemplate: '%s - Gavali',
+    titleTemplate: '%s - gavali_report',
     title: 'Gavali',
     meta: [
       { charset: 'utf-8' },
