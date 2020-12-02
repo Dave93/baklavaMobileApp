@@ -298,6 +298,9 @@ export default {
           title: {
             text: 'Суммы в разрезе способов оплат',
             x: 'start',
+            textStyle: {
+              color: '#fff',
+            },
           },
           tooltip: {
             trigger: 'item',
@@ -322,6 +325,9 @@ export default {
             x: 'center',
             y: 'bottom',
             data: labels,
+            textStyle: {
+              color: '#fff',
+            },
           },
           series: [
             {
