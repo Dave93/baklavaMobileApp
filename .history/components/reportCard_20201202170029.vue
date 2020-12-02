@@ -68,7 +68,7 @@
     >
       <v-list-item three-line>
         <v-list-item-content>
-          <div class="overline mb-4">Общая сумма заказов</div>
+          <div class="overline mb-4 font-italic">Общая сумма заказов</div>
           <v-list-item-title
             class="headline mb-1 font-weight-medium white--text"
             >{{ totalPrice }}</v-list-item-title
@@ -94,7 +94,7 @@
     <v-card
       v-for="price in prices"
       :key="price.LABEL"
-      class="mx-auto my-5 bottom-gradient"
+      class="mx-auto my-5"
       elevation="5"
       outlined
       shaped
@@ -119,46 +119,10 @@
     >
       <v-list-item three-line>
         <v-list-item-content>
-          <div class="overline mb-4">Общая сумма скидок</div>
+          <div class="overline mb-4 font-italic">Общая сумма скидок</div>
           <v-list-item-title
             class="headline mb-1 font-weight-medium white--text"
             >{{ totalDiscount }}</v-list-item-title
-          >
-        </v-list-item-content>
-      </v-list-item>
-    </v-card>
-    <v-card
-      v-if="totalPrice.length"
-      class="mx-auto my-5 bottom-gradient"
-      elevation="5"
-      outlined
-      shaped
-      color="purple"
-    >
-      <v-list-item three-line>
-        <v-list-item-content>
-          <div class="overline mb-4">количество заказов</div>
-          <v-list-item-title
-            class="headline mb-1 font-weight-medium white--text"
-            >{{ orderCount | money }}</v-list-item-title
-          >
-        </v-list-item-content>
-      </v-list-item>
-    </v-card>
-    <v-card
-      v-if="totalPrice.length"
-      class="mx-auto my-5 bottom-gradient"
-      elevation="5"
-      outlined
-      shaped
-      color="purple"
-    >
-      <v-list-item three-line>
-        <v-list-item-content>
-          <div class="overline mb-4">Средная сумма заказов</div>
-          <v-list-item-title
-            class="headline mb-1 font-weight-medium white--text"
-            >{{ priceAverage | money }}</v-list-item-title
           >
         </v-list-item-content>
       </v-list-item>
@@ -189,8 +153,6 @@ export default {
     pieInterval: null,
     totalPrice: '',
     totalDiscount: '',
-    orderCount: '',
-    priceAverage: '',
     filterDatePickerMinDate: new Date().toISOString().substr(0, 10),
     filterDatePickerDates: [new Date().toISOString().substr(0, 10)],
     showFilterDatePickker: false,
@@ -338,11 +300,6 @@ export default {
           decimal: ',',
         }).format() + ' сум'
       this.prices = data.result.PRICES
-
-      this.orderCount = data.result.TOTAL_ORDER_COUNT
-
-      this.priceAverage = data.result.TOTAL_PRICE_AVERAGE
-
       this.isLoadingData = false
     },
   },
