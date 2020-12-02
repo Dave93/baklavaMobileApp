@@ -172,7 +172,7 @@ export default {
         const pieData = {
           title: {
             text: 'Суммы в разрезе способов оплат',
-            x: 'center',
+            x: 'start',
           },
           tooltip: {
             trigger: 'item',
@@ -196,7 +196,7 @@ export default {
           legend: {
             orient: 'horizontal',
             type: 'scroll',
-            x: 'center',
+            x: 'start',
             y: 'bottom',
             data: labels,
           },
@@ -205,7 +205,7 @@ export default {
               name: 'Способы оплат',
               type: 'pie',
               radius: '55%',
-              center: ['50%', '60%'],
+              center: ['30%', '60%'],
               data: pricesData,
               itemStyle: {
                 emphasis: {
@@ -244,7 +244,7 @@ export default {
             })
           }, 1500)
           pie.resize()
-        }, 100)
+        }, 200)
       }
 
       this.totalPrice =
