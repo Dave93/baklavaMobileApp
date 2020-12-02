@@ -25,7 +25,7 @@
     </v-form>
     <v-card
       v-if="totalPrice.length"
-      class="mx-auto my-5"
+      class="mx-auto my-5 bottom-gradient"
       elevation="5"
       outlined
       shaped
@@ -33,10 +33,11 @@
     >
       <v-list-item three-line>
         <v-list-item-content>
-          <div class="overline mb-4">Общая сумма заказов</div>
-          <v-list-item-title class="headline mb-1">{{
-            totalPrice
-          }}</v-list-item-title>
+          <div class="overline mb-4 font-italic">Общая сумма заказов</div>
+          <v-list-item-title
+            class="headline mb-1 font-weight-medium white--text"
+            >{{ totalPrice }}</v-list-item-title
+          >
         </v-list-item-content>
       </v-list-item>
     </v-card>
@@ -57,8 +58,13 @@
     </v-card>
     <v-card
       v-for="price in prices"
+<<<<<<< HEAD
       :key="price.LABEL"
       class="mx-auto my-5"
+=======
+      :key="price.label"
+      class="mx-auto my-5 bottom-gradient"
+>>>>>>> f8de06e53c7d75dd4c826c02af82cad9f13b1239
       elevation="5"
       outlined
       shaped
@@ -75,7 +81,7 @@
     </v-card>
     <v-card
       v-if="totalPrice.length"
-      class="mx-auto my-5"
+      class="mx-auto my-5 bottom-gradient"
       elevation="5"
       outlined
       shaped
@@ -83,10 +89,11 @@
     >
       <v-list-item three-line>
         <v-list-item-content>
-          <div class="overline mb-4">Общая сумма скидок</div>
-          <v-list-item-title class="headline mb-1">{{
-            totalDiscount
-          }}</v-list-item-title>
+          <div class="overline mb-4 font-italic">Общая сумма скидок</div>
+          <v-list-item-title
+            class="headline mb-1 font-weight-medium white--text"
+            >{{ totalDiscount }}</v-list-item-title
+          >
         </v-list-item-content>
       </v-list-item>
     </v-card>
@@ -134,8 +141,6 @@ export default {
         value: 'custom_period',
       },
     ],
-    labels: ['12am', '3am', '6am', '9am', '12pm', '3pm', '6pm', '9pm'],
-    value: [200, 675, 410, 390, 310, 460, 250, 240],
   }),
   computed: {
     computedDateFormattedMoment() {
@@ -274,4 +279,12 @@ export default {
 }
 </script>
 .v-sheet--offset { top: -24px; position: relative; }
-<style scoped></style>
+<style scoped>
+.bottom-gradient {
+  background-image: linear-gradient(
+    to top,
+    rgba(0, 0.5, 0.5, 0.8) 0%,
+    transparent 72px
+  );
+}
+</style>
