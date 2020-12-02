@@ -58,13 +58,8 @@
     </v-card>
     <v-card
       v-for="price in prices"
-<<<<<<< HEAD
       :key="price.LABEL"
       class="mx-auto my-5"
-=======
-      :key="price.label"
-      class="mx-auto my-5 bottom-gradient"
->>>>>>> f8de06e53c7d75dd4c826c02af82cad9f13b1239
       elevation="5"
       outlined
       shaped
@@ -145,7 +140,6 @@ export default {
   computed: {
     computedDateFormattedMoment() {
       const arrival = this.filterDatePickerDates
-      // const dateToString = formatWithOptions({ locale: ru }, 'D MMM')
       return Array.isArray(arrival)
         ? arrival
             .sort()
@@ -182,8 +176,6 @@ export default {
           tooltip: {
             trigger: 'item',
             formatter: (params) => {
-              // console.log(params)
-              // console.log('{a} <br/>{b} : {c} ({d}%)')
               return (
                 params.name +
                 ' <br />' +
@@ -278,7 +270,6 @@ export default {
   },
 }
 </script>
-.v-sheet--offset { top: -24px; position: relative; }
 <style scoped>
 .bottom-gradient {
   background-image: linear-gradient(
