@@ -136,6 +136,13 @@ export default {
         value: 'custom_period',
       },
     ],
+    defaultBranch: 'all',
+    branches: [
+      {
+        text: 'Все',
+        value: 'all',
+      },
+    ],
   }),
   computed: {
     computedDateFormattedMoment() {
