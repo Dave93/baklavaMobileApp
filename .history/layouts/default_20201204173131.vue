@@ -21,10 +21,9 @@
 </template>
 
 <script>
-import global from '~/mixins/global'
+import global from '~/mixins/global.js'
 export default {
   middleware: 'authenticated',
-  mixins: [global],
   data() {
     return {
       clipped: false,
@@ -38,12 +37,19 @@ export default {
     }
   },
   mounted() {
-    const item = this.images[Math.floor(Math.random() * this.images.length)]
+    const images = [
+      'https://images.pexels.com/photos/248159/pexels-photo-248159.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260',
+      'https://images.pexels.com/photos/2527671/pexels-photo-2527671.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+      'https://images.pexels.com/photos/710722/pexels-photo-710722.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+      'https://images.pexels.com/photos/681331/pexels-photo-681331.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+    ]
+
+    const item = images[Math.floor(Math.random() * images.length)]
     document.getElementById('app').style.background =
       'url(' + item + ') no-repeat center center fixed'
 
     setInterval(() => {
-      const item = this.images[Math.floor(Math.random() * this.images.length)]
+      const item = images[Math.floor(Math.random() * images.length)]
       document.getElementById('app').style.background =
         'url(' + item + ') no-repeat center center fixed'
     }, 10000)

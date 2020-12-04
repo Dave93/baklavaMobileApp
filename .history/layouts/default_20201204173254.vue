@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import global from '~/mixins/global'
+import global from '~/mixins/global.js'
 export default {
   middleware: 'authenticated',
   mixins: [global],
