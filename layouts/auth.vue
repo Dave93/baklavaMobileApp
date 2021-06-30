@@ -85,7 +85,7 @@ export default {
         this.authError = ''
         this.isAuthLoading = true
         const { data } = await this.$axios.post(
-          'https://crm.gavali.uz/rest/1/l6yxn7688v0l6ewl/myuser.admin.auth',
+          'https://crm.istbaklava.uz/rest/1/l6yxn7688v0l6ewl/myuser.admin.auth',
           {
             login: this.formUsername,
             password: btoa(this.formPassword),
