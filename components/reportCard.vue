@@ -85,6 +85,24 @@
         </v-list-item-content>
       </v-list-item>
     </v-card>
+    <v-card
+      v-if="totalReturn.length"
+      class="mx-auto my-5 bottom-gradient"
+      elevation="5"
+      outlined
+      shaped
+      color="purple"
+    >
+      <v-list-item three-line>
+        <v-list-item-content>
+          <div class="overline mb-4">Общая сумма возврата</div>
+          <v-list-item-title
+            class="headline mb-1 font-weight-medium white--text text-center"
+            >{{ totalReturn }}</v-list-item-title
+          >
+        </v-list-item-content>
+      </v-list-item>
+    </v-card>
     <v-card elevation="5" class="my-5">
       <v-card-text>
         <div v-if="pie">
@@ -202,6 +220,7 @@ export default {
     pieInterval: null,
     totalPrice: '',
     totalDiscount: '',
+    totalReturn: '',
     orderCount: '',
     priceAverage: '',
     filterDatePickerMinDate: new Date().toISOString().substr(0, 10),
@@ -378,6 +397,13 @@ export default {
 
       this.totalPrice =
         currency(+data.result.TOTAL_PRICE, {
+          symbol: '',
+          separator: ' ',
+          decimal: ',',
+        }).format() + ' сум'
+      console.log('return', data.result.TOTAL_RETURN)
+      this.totalReturn =
+        currency(+data.result.TOTAL_RETURN, {
           symbol: '',
           separator: ' ',
           decimal: ',',
