@@ -51,6 +51,7 @@
               v-model="defaultBranch"
               :items="branches"
               label="Филиал"
+              :disabled="userBranch != null"
             ></v-select>
           </v-col>
         </v-row>
@@ -256,6 +257,7 @@ export default {
         value: 'all',
       },
     ],
+    userBranch: null,
   }),
   computed: {
     computedDateFormattedMoment() {
@@ -271,6 +273,10 @@ export default {
     },
   },
   async mounted() {
+    const userData = await this.$store.state.auth.userData
+    if (userData.UF_STORE_ID) {
+      this.userBranch = userData.UF_STORE_ID
+    }
     const { data } = await this.$axios.post(
       'https://crm.istbaklava.uz/rest/1/l6yxn7688v0l6ewl/mysale.getStoreList'
     )
@@ -282,6 +288,10 @@ export default {
         value: 'all',
       },
     ]
+
+    if (this.userBranch) {
+      this.defaultBranch = this.userBranch
+    }
 
     if (data.result) {
       data.result.map((item) => {
@@ -303,7 +313,7 @@ export default {
         {
           periodType: this.defaultPeriodValue,
           period: this.filterDatePickerDates,
-          branch: this.defaultBranch,
+          branch: this.userBranch ? this.userBranch : this.defaultBranch,
         }
       )
 
